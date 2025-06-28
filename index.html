@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="az" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMARTBIZPANEL – Biznesinizi Optimallaşdırın</title>
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="https://placehold.co/32x32/6366f1/ffffff?text=SBP" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Əsas Şrift və Fon Rəngləri */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind's slate-50 */
+            color: #1e293b; /* Tailwind's slate-800 */
+        }
+
+        /* Scrollbar stillləri */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* Tailwind's slate-300 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* Tailwind's slate-400 */
+        }
+
+        /* Hero Section Blob Animasiyaları */
+        @keyframes blob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite cubic-bezier(0.6, 0.05, 0.2, 0.9);
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Fade-in-up Animasiyası */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up.delay-200 {
+            animation-delay: 0.2s;
+        }
+        .animate-fade-in-up.delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        /* Mesaj qutusu stilləri */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /* shadow-2xl */
+            z-index: 1000;
+            text-align: center;
+            border: 1px solid #e2e8f0; /* border-gray-200 */
+            max-width: 90%;
+        }
+        .message-box-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Loading spinner CSS */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto; /* Center the loader */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Bölməsi -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 sticky top-0 z-50 rounded-b-lg">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto">
+            <!-- Loqo -->
+            <div class="flex items-center space-x-2">
+                <img src="https://placehold.co/40x40/6366f1/ffffff?text=SBP" alt="SmartBizPanel Logo" class="h-10 w-10 rounded-full shadow-md">
+                <a href="#home" class="text-2xl font-bold text-indigo-600">SmartBizPanel</a>
+            </div>
+
+            <!-- Naviqasiya Linkləri (Kiçik ekranlarda gizli, orta və yuxarı ekranlarda görünür) -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Əsas Səhifə</a>
+                <a href="#features" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Funksiyalar</a>
+                <a href="#audience" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Kimlər Üçün?</a>
+                <a href="#pricing" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Qiymət Planları</a>
+                <a href="#demo" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Demo</a>
+                <a href="#tools" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">AI Alətləri</a> <!-- Yeni Link -->
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Haqqımızda</a>
+                <a href="#faq" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">FAQ</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300">Əlaqə</a>
+            </div>
+
+            <!-- CTA Düyməsi və Dil Seçimi -->
+            <div class="flex items-center space-x-4">
+                <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 hidden lg:block">
+                    Panelə Daxil Ol
+                </a>
+                <!-- Dil Seçimi -->
+                <div class="relative group">
+                    <button id="lang-button" class="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 font-medium py-2 px-3 rounded-lg border border-gray-300 hover:border-indigo-400 transition duration-300">
+                        🇦🇿 AZ <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </button>
+                    <!-- Dil Açılan Menyu (Əvvəlcədən gizli) -->
+                    <div class="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 origin-top-right">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md" data-lang="az">🇦🇿 Azərbaycan</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md" data-lang="en">🇬🇧 English</a>
+                    </div>
+                </div>
+
+                <!-- Mobil Menyu Düyməsi -->
+                <button class="md:hidden text-gray-600 hover:text-indigo-600 text-2xl" id="mobile-menu-button" aria-label="Mobil Menyu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobil Menyu (Əvvəlcədən gizli) -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 px-2 pb-3 bg-white rounded-lg shadow-lg">
+            <a href="#home" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Əsas Səhifə</a>
+            <a href="#features" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Funksiyalar</a>
+            <a href="#audience" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Kimlər Üçün?</a>
+            <a href="#pricing" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Qiymət Planları</a>
+            <a href="#demo" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Demo</a>
+            <a href="#tools" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">AI Alətləri</a> <!-- Yeni Link -->
+            <a href="#about" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Haqqımızda</a>
+            <a href="#faq" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">FAQ</a>
+            <a href="#contact" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md font-medium">Əlaqə</a>
+            <a href="#" class="w-full block text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                Panelə Daxil Ol
+            </a>
+        </div>
+    </header>
+
+    <!-- Əsas Məzmun -->
+    <main>
+        <!-- 1. Əsas Səhifə (Hero Bölməsi) -->
+        <section id="home" class="relative bg-gradient-to-br from-indigo-500 to-purple-600 text-white py-20 md:py-32 px-6 rounded-b-3xl overflow-hidden">
+            <div class="max-w-6xl mx-auto text-center z-10 relative">
+                <h1 class="text4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                    Biznesini Sistemləşdir. Vaxtını Qurtar.
+                    <span class="block text-indigo-200">SmartBizPanel ilə işini optimallaşdır.</span>
+                </h1>
+                <p class="text-lg md:text-xl mb-10 opacity-90 max-w-3xl mx-auto animate-fade-in-up delay-200">
+                    SmartBizPanel, Notion, Zapier, Make və digər no-code alətlərlə KOB-lar üçün daxili idarəetmə sistemlərini avtomatlaşdıran SaaS platformasıdır.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-play-circle mr-2"></i> Demo-ya Bax
+                    </a>
+                    <a href="#pricing" class="bg-indigo-700 text-white hover:bg-indigo-800 font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center border border-indigo-700">
+                        <i class="fas fa-arrow-right mr-2"></i> İndi Başla (Pulsuz)
+                    </a>
+                </div>
+            </div>
+            <!-- Fon Blob/Şəkillər vizual cazibə üçün -->
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-indigo-400 opacity-20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+                <div class="absolute -top-10 -left-10 w-96 h-96 bg-purple-400 opacity-20 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+            </div>
+        </section>
+
+        <!-- 2. Xidmətlər / Funksiyalar Bölməsi -->
+        <section id="features" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Əsas Funksiyalarımız</h2>
+                <p class="text-xl text-gray-600">Biznesinizi idarə etmək üçün lazım olan hər şey, bir yerdə.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Funksiya 1: Layihə və Tapşırıq İdarəetməsi -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-tasks"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Layihə və Tapşırıq İdarəetməsi</h3>
+                    <p class="text-gray-600 mb-5">Layihələrinizi effektiv şəkildə idarə edin, tapşırıqları təyin edin, son tarixləri izləyin və komandanızla əməkdaşlığı artırın.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=LAYİHƏ+İDARƏETMƏSİ+DEMOSU" alt="Layihə İdarəetməsi Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+
+                <!-- Funksiya 2: Müştəri və Komanda Menecmenti -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Müştəri və Komanda Menecmenti</h3>
+                    <p class="text-gray-600 mb-5">Bütün müştəri məlumatlarını, ünsiyyət tarixçələrini mərkəzləşdirin və komandanızın rollarını asanlıqla idarə edin.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=CRM+DEMOSU" alt="Müştəri İdarəetməsi Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+
+                <!-- Funksiya 3: SOP və Daxili Prosedurlar -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-book-open"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">SOP və Daxili Prosedurlar</h3>
+                    <p class="text-gray-600 mb-5">Standart əməliyyat prosedurlarını (SOP) asanlıqla yaradın, sənədləşdirin və komandanız üçün əlçatan edin.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=SOP+DEMOSU" alt="SOP Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+
+                <!-- Funksiya 4: Maliyyə Paneli və Gəlir İzləmə -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Maliyyə Paneli və Gəlir İzləmə</h3>
+                    <p class="text-gray-600 mb-5">Gəlirlərinizi və xərclərinizi izləyin, maliyyə hesabatlarınıza bir baxışda nəzarət edin.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=MALİYYƏ+DEMOSU" alt="Maliyyə Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+
+                <!-- Funksiya 5: Zapier / Make İnteqrasiyaları -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-plug"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Zapier / Make İnteqrasiyaları</h3>
+                    <p class="text-gray-600 mb-5">SmartBizPanel-i sevdiyiniz digər alətlərlə (Slack, Email, Google Sheets) avtomatik birləşdirin.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=İNTEQRASİYA+DEMOSU" alt="İnteqrasiya Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+
+                <!-- Funksiya 6: Dashboard Görünüşü -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-chart-pie"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Dashboard Görünüşü</h3>
+                    <p class="text-gray-600 mb-5">Bütün əsas göstəriciləri bir yerdə cəmləşdirən intuitiv dashboard ilə biznesinizin nəbzini tutun.</p>
+                    <img src="https://placehold.co/400x250/e0e7ff/6366f1?text=DASHBOARD+DEMOSU" alt="Dashboard Demodu" class="w-full h-auto rounded-lg shadow-md mt-4 border border-gray-300">
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Hədəf Auditoriya Bölməsi -->
+        <section id="audience" class="py-16 md:py-24 px-6 bg-white rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">SmartBizPanel Kimlər Üçün Nəzərdə Tutulub?</h2>
+                <p class="text-xl text-gray-600">Hədəf auditoriyamızın ehtiyaclarına uyğunlaşdırılmış həllər təqdim edirik.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Şəxsiyyət 1: Freelancer -->
+                <div class="bg-indigo-50 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/a78bfa/ffffff?text=FL" alt="Freelancer avatarları" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-300 shadow-md">
+                    <h3 class="text-xl font-semibold text-indigo-800 mb-2">Freelancerlər</h3>
+                    <p class="text-indigo-700">Layihə idarəetməsini, müştəri əlaqələrini və maliyyəni sadələşdirərək daha çox işə fokuslanın.</p>
+                </div>
+
+                <!-- Şəxsiyyət 2: Kiçik və Orta Biznes Sahibləri -->
+                <div class="bg-green-50 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/86efac/ffffff?text=KOB" alt="Kiçik və Orta Biznes Sahibləri avatarları" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-300 shadow-md">
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">Kiçik və Orta Biznes Sahibləri</h3>
+                    <p class="text-green-700">Daxili proseslərinizi sistemləşdirin, səmərəliliyi artırın və böyüməyə nail olun.</p>
+                </div>
+
+                <!-- Şəxsiyyət 3: Komanda Rəhbərləri -->
+                <div class="bg-red-50 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/fca5a5/ffffff?text=TL" alt="Komanda Rəhbəri avatarları" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-red-300 shadow-md">
+                    <h3 class="text-xl font-semibold text-red-800 mb-2">Komanda Rəhbərləri</h3>
+                    <p class="text-red-700">Komandanızın işini izləyin, tapşırıqları effektiv şəkildə paylayın və performansı izləyin.</p>
+                </div>
+
+                <!-- Şəxsiyyət 4: Startup Qurucuları -->
+                <div class="bg-yellow-50 rounded-xl p-6 text-center shadow-md transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/100x100/fcd34d/ffffff?text=SU" alt="Startup Qurucusu avatarları" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-yellow-300 shadow-md">
+                    <h3 class="text-xl font-semibold text-yellow-800 mb-2">Startup Qurucuları</h3>
+                    <p class="text-yellow-700">Minimal resurslarla sürətli sistem qurun və məhsulunuzun inkişafına fokuslanın.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Qiymət Planları Bölməsi -->
+        <section id="pricing" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Qiymət Planlarımız</h2>
+                <p class="text-xl text-gray-600">Ehtiyaclarınıza uyğun planı seçin. İstənilən vaxt dəyişmək mümkündür.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic (Pulsuz) Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Basic</h3>
+                    <p class="text-5xl font-extrabold text-indigo-600 mb-6">0 <span class="text-xl text-gray-500">AZN/ay</span></p>
+                    <p class="text-gray-600 text-center mb-6">Kiçik layihələr və fərdi istifadə üçün ideal.</p>
+                    <ul class="text-gray-700 space-y-3 mb-8 text-left w-full px-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Məhdud modul çıxışı</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Müştəri və layihə bazası (limitli)</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Əsas tapşırıq idarəetməsi</li>
+                        <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-2"></i> Avtomatlaşdırma yoxdur</li>
+                        <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-2"></i> Prioritet dəstək yoxdur</li>
+                    </ul>
+                    <a href="#contact" class="w-full bg-indigo-100 text-indigo-600 hover:bg-indigo-200 font-semibold py-3 px-6 rounded-lg transition duration-300 text-center">
+                        Pulsuz Başla
+                    </a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-indigo-600 text-white rounded-xl shadow-lg p-8 flex flex-col items-center border border-indigo-700 transform hover:scale-105 transition duration-300 hover:shadow-xl relative overflow-hidden">
+                    <span class="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-bl-lg">Ən Populyar</span>
+                    <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                    <p class="text-5xl font-extrabold mb-6">49 <span class="text-xl text-indigo-200">AZN/ay</span></p>
+                    <p class="opacity-90 text-center mb-6">Böyüyən KOB-lar və komandalar üçün hər şey daxil həll.</p>
+                    <ul class="space-y-3 mb-8 text-left w-full px-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Limitsiz modul və istifadəçi</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Tam müştəri və layihə bazası</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Genişləndirilmiş tapşırıq idarəetməsi</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Zapier / Make inteqrasiyaları</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-400 mr-2"></i> Prioritet dəstək</li>
+                    </ul>
+                    <a href="#contact" class="w-full bg-white text-indigo-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 text-center">
+                        Pro Planı Seç
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Enterprise</h3>
+                    <p class="text-5xl font-extrabold text-gray-800 mb-6">Fərdi</p>
+                    <p class="text-gray-600 text-center mb-6">Böyük komandalar və xüsusi ehtiyaclar üçün.</p>
+                    <ul class="text-gray-700 space-y-3 mb-8 text-left w-full px-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Pro planın bütün xüsusiyyətləri</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Xüsusi inteqrasiyalar</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Fərdi təlimlər və konsaltinq</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Dedicated müştəri meneceri</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> 7/24 dəstək</li>
+                    </ul>
+                    <a href="#contact" class="w-full bg-indigo-100 text-indigo-600 hover:bg-indigo-200 font-semibold py-3 px-6 rounded-lg transition duration-300 text-center">
+                        Bizimlə Əlaqə Saxla
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <p class="text-lg text-gray-700 mb-4">Sizin üçün uyğun olanı birlikdə təyin edək.</p>
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-envelope mr-2"></i> Əlaqə Forması
+                </a>
+            </div>
+        </section>
+
+        <!-- 5. Demo və Şablonlar Bölməsi -->
+        <section id="demo" class="py-16 md:py-24 px-6 bg-white rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Demo və Şablonlarımız</h2>
+                <p class="text-xl text-gray-600">SmartBizPanel-in gücünü real vaxtda görün. Hazır şablonlarımızla işə sürətli başlayın.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Demo Video / GIF -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Platformanın Real Görüntüsü</h3>
+                    <div class="w-full max-w-lg rounded-xl overflow-hidden shadow-2xl border border-gray-300">
+                        <!-- Video və ya GIF üçün yer tutucu -->
+                        <img src="https://placehold.co/600x400/6366f1/ffffff?text=PLATFORM+DEMO" alt="Platforma Demodu" class="w-full h-auto">
+                    </div>
+                    <a href="#contact" class="mt-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-external-link-alt mr-2"></i> Canlı Demoya Bax
+                    </a>
+                </div>
+
+                <!-- Şablonlar Qalereyası -->
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Hazır Şablonlar Qalereyası</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-lg">
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-md border border-gray-200 text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                            <img src="https://placehold.co/200x150/cbd5e1/334155?text=Dashboard" alt="Dashboard Şablonu" class="w-full h-auto rounded-md mb-3 border border-gray-300">
+                            <p class="font-medium text-gray-700 mb-2">Ümumi Dashboard</p>
+                            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm py-2 px-4 rounded-md transition duration-300">Yüklə/Bax</a>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-md border border-gray-200 text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                            <img src="https://placehold.co/200x150/cbd5e1/334155?text=SOP" alt="SOP Şablonu" class="w-full h-auto rounded-md mb-3 border border-gray-300">
+                            <p class="font-medium text-gray-700 mb-2">SOP Şablonu</p>
+                            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm py-2 px-4 rounded-md transition duration-300">Yüklə/Bax</a>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-md border border-gray-200 text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                            <img src="https://placehold.co/200x150/cbd5e1/334155?text=Maliyyə" alt="Maliyyə Cədvəli Şablonu" class="w-full h-auto rounded-md mb-3 border border-gray-300">
+                            <p class="font-medium text-gray-700 mb-2">Maliyyə Cədvəli</p>
+                            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm py-2 px-4 rounded-md transition duration-300">Yüklə/Bax</a>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-md border border-gray-200 text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                            <img src="https://placehold.co/200x150/cbd5e1/334155?text=CRM" alt="CRM Şablonu" class="w-full h-auto rounded-md mb-3 border border-gray-300">
+                            <p class="font-medium text-gray-700 mb-2">CRM Şablonu</p>
+                            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white text-sm py-2 px-4 rounded-md transition duration-300">Yüklə/Bax</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12. AI Alətləri Bölməsi (YENİ) -->
+        <section id="tools" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">✨ AI Alətlərimiz</h2>
+                <p class="text-xl text-gray-600">Gemini API-nin gücü ilə biznesinizi gücləndirin.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- AI-Powered SOP Generator -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">SOP Generatoru ✨</h3>
+                    <p class="text-gray-600 mb-5">Əsas iş axınlarınız üçün dərhal standart əməliyyat prosedurları (SOP) layihələri yaradın. Sadəcə təsvir edin, AI sizin üçün yazsın!</p>
+                    <div class="space-y-4 mt-6">
+                        <div>
+                            <label for="sop-input" class="block text-gray-700 text-sm font-medium mb-2">Əsas iş axını və ya tapşırıq təsviri:</label>
+                            <textarea id="sop-input" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="Məsələn: 'Yeni müştəri daxil olduqda atılacaq addımlar'"></textarea>
+                        </div>
+                        <button id="generate-sop-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                            <span id="sop-loader" class="hidden loader mr-2"></span>
+                            ✨ SOP Yarat
+                        </button>
+                        <div>
+                            <label for="sop-output" class="block text-gray-700 text-sm font-medium mb-2 mt-4">Yaradılmış SOP layihəsi:</label>
+                            <textarea id="sop-output" rows="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none" readonly placeholder="SOP burada görünəcək..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI-Powered Marketing Slogan Generator -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 hover:shadow-xl border border-gray-200">
+                    <div class="text-indigo-600 text-4xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Marketinq Sloqan Generatoru ✨</h3>
+                    <p class="text-gray-600 mb-5">Məhsulunuz və ya xidmətiniz üçün cəlbedici sloqanlara ehtiyacınız var? Qısa təsvir verin, AI sizə bir neçə variant təklif etsin!</p>
+                    <div class="space-y-4 mt-6">
+                        <div>
+                            <label for="slogan-input" class="block text-gray-700 text-sm font-medium mb-2">Məhsul/Xidmət haqqında qısa təsvir:</label>
+                            <input type="text" id="slogan-input" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="Məsələn: 'təşkilati məhsuldarlıq proqramı'">
+                        </div>
+                        <button id="generate-slogan-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                            <span id="slogan-loader" class="hidden loader mr-2"></span>
+                            ✨ Sloqan Yarat
+                        </button>
+                        <div>
+                            <label for="slogan-output" class="block text-gray-700 text-sm font-medium mb-2 mt-4">Yaradılmış sloqanlar:</label>
+                            <textarea id="slogan-output" rows="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 focus:outline-none" readonly placeholder="Sloqanlar burada görünəcək..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. Haqqımızda Bölməsi -->
+        <section id="about" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Haqqımızda</h2>
+                <p class="text-xl text-gray-600">SmartBizPanel-in missiyası və onu yaradan komanda ilə tanış olun.</p>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h3 class="text-3xl font-semibold text-gray-800 mb-4">Missiyamız və Vizyonumuz</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Missiyamız, kiçik və orta sahibkarlara, freelancerlərə və startup komandalarına rəqəmsal transformasiya yolunda dəstək olmaqdır. Bizim vizyonumuz, hər bir biznesin daxili proseslərini sadə, effektiv və avtomatlaşdırılmış şəkildə idarə edə biləcəyi bir gələcək yaratmaqdır. No-code alətlər vasitəsilə biznes idarəetməsini hər kəs üçün əlçatan etmək istəyirik.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    İşinizi optimallaşdırmaq, vaxtınıza qənaət etmək və böyüməyinizə kömək etmək üçün buradayıq.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <h3 class="text-3xl font-semibold text-gray-800 text-center mb-12">Komandamız</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Komanda Üzvü 1 -->
+                    <div class="flex flex-col items-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/120x120/6366f1/ffffff?text=CEO" alt="Komanda Üzvü: Cavid Məmmədov" class="w-32 h-32 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">Cavid Məmmədov</h4>
+                        <p class="text-indigo-600 font-medium mb-2">CEO & Qurucu</p>
+                        <p class="text-gray-600 text-center text-sm">Layihənin strateji istiqamətini müəyyənləşdirir və komandaya rəhbərlik edir.</p>
+                    </div>
+                    <!-- Komanda Üzvü 2 -->
+                    <div class="flex flex-col items-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/120x120/6366f1/ffffff?text=DZN" alt="Komanda Üzvü: Aytən Quliyeva" class="w-32 h-32 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">Aytən Quliyeva</h4>
+                        <p class="text-indigo-600 font-medium mb-2">Notion Dizayneri</p>
+                        <p class="text-gray-600 text-center text-sm">Notion əsaslı daxili sistemlərin dizaynı və qurulmasına cavabdehdir.</p>
+                    </div>
+                    <!-- Komanda Üzvü 3 -->
+                    <div class="flex flex-col items-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/120x120/6366f1/ffffff?text=DEV" alt="Komanda Üzvü: Orxan Həsənov" class="w-32 h-32 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">Orxan Həsənov</h4>
+                        <p class="text-indigo-600 font-medium mb-2">Softr/Bubble Developer</p>
+                        <p class="text-gray-600 text-center text-sm">Veb interfeysləri və istifadəçi panellərini inkişaf etdirir.</p>
+                    </div>
+                    <!-- Komanda Üzvü 4 -->
+                    <div class="flex flex-col items-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                        <img src="https://placehold.co/120x120/6366f1/ffffff?text=MKT" alt="Komanda Üzvü: Zəhra Əliyeva" class="w-32 h-32 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                        <h4 class="text-xl font-semibold text-gray-800 mb-1">Zəhra Əliyeva</h4>
+                        <p class="text-indigo-600 font-medium mb-2">Marketinq Mütəxəssisi</p>
+                        <p class="text-gray-600 text-center text-sm">Məhsulun tanıtımı və müştəri cəlb edilməsi strategiyalarını idarə edir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Tez-tez Verilən Suallar (FAQ) Bölməsi -->
+        <section id="faq" class="py-16 md:py-24 px-6 bg-white rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Tez-tez Verilən Suallar (FAQ)</h2>
+                <p class="text-xl text-gray-600">SmartBizPanel haqqında ən çox maraq doğuran suallara cavablar.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ Elementi 1 -->
+                <div class="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>1. Platforma necə işləyir?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 hidden">
+                        <p class="text-gray-700 leading-relaxed">
+                            SmartBizPanel, Notion, Airtable, Softr, Zapier və Make kimi no-code alətləri bir araya gətirərək işləyir. Biz bu alətləri birləşdirərək sizin biznesinizin ehtiyaclarına uyğun fərdi daxili idarəetmə sistemi qururuq. Məlumatlarınız Airtable/Notion-da saxlanılır, interfeys Softr/Bubble vasitəsilə təmin olunur və proseslər Zapier/Make ilə avtomatlaşdırılır.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Elementi 2 -->
+                <div class="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>2. Texniki dəstək necə göstərilir?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 hidden">
+                        <p class="text-gray-700 leading-relaxed">
+                            Müştərilərimizə e-poçt, WhatsApp/Telegram və ya təyin olunmuş video zənglər vasitəsilə texniki dəstək göstəririk. Pro və Enterprise plan istifadəçiləri üçün prioritet dəstək xidməti mövcuddur. Həmçinin, geniş bilgi bazası və video təlimatlarımızdan da istifadə edə bilərsiniz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Elementi 3 -->
+                <div class="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>3. Pulsuz plan nələri əhatə edir?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 hidden">
+                        <p class="text-gray-700 leading-relaxed">
+                            Pulsuz planımız sizə məhdud sayda modullara (müştəri və layihə bazası, əsas tapşırıq idarəetməsi) və dəstəyə çıxış imkanı verir. Bu plan kiçik layihələr və fərdi istifadə üçün idealdır. Avtomatlaşdırma və genişləndirilmiş funksiyalar üçün Pro və ya Enterprise planlarımızdan birini seçə bilərsiniz.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Elementi 4 -->
+                <div class="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden">
+                    <button class="w-full text-left p-6 font-semibold text-lg text-gray-800 flex justify-between items-center focus:outline-none" onclick="toggleAccordion(this)">
+                        <span>4. Hər müştəriyə özəl panel olurmu?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 hidden">
+                        <p class="text-gray-700 leading-relaxed">
+                            Bəli, SmartBizPanel istifadəçilərinə özəl, fərdiləşdirilmiş panellər təklif edir. Bu panellər Softr vasitəsilə qurulur və sizin üçün xüsusi olaraq dizayn edilir. Hər bir panel sizin müştəri və layihə məlumatlarınızı, tapşırıqlarınızı və maliyyə göstəricilərinizi əks etdirir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Əlaqə Bölməsi -->
+        <section id="contact" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Bizimlə Əlaqə Saxla</h2>
+                <p class="text-xl text-gray-600">Suallarınız var? Layihənizi müzakirə etmək istəyirsiniz? Bizə yazın!</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Adınız</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="Tam adınızı daxil edin" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-medium mb-2">E-poçt Ünvanınız</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="nümunə@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Mesajınız</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300" placeholder="Mesajınızı bura yazın..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Mesaj Göndər
+                    </button>
+                </form>
+
+                <div class="mt-10 text-center">
+                    <p class="text-gray-700 mb-4">Alternativ əlaqə vasitələri:</p>
+                    <div class="flex justify-center space-x-6 text-2xl">
+                        <a href="mailto:info@smartbizpanel.az" class="text-gray-600 hover:text-indigo-600 transition duration-300" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://wa.me/994501234567" target="_blank" class="text-gray-600 hover:text-green-500 transition duration-300" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/smartbizpanel" target="_blank" class="text-gray-600 hover:text-blue-500 transition duration-300" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://linkedin.com/company/smartbizpanel" target="_blank" class="text-gray-600 hover:text-blue-700 transition duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <p class="text-gray-600 mt-4">E-poçt: <a href="mailto:info@smartbizpanel.az" class="text-indigo-600 hover:underline">info@smartbizpanel.az</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Bloq / Yeniliklər Bölməsi (İstəğe bağlı) -->
+        <section id="blog-updates" class="py-16 md:py-24 px-6 bg-gray-50 rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Bloq və Yeniliklər</h2>
+                <p class="text-xl text-gray-600">No-code dünyasından ən son xəbərlər, məhsuldarlıq tövsiyələri və SmartBizPanel yenilikləri.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Bloq Yazısı 1 -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/400x250/d1d5db/4b5563?text=NO-CODE+GÜCÜ" alt="No-code Gücü" class="w-full h-auto object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">No-code alətləri ilə biznesinizi necə avtomatlaşdıra bilərsiniz?</h3>
+                        <p class="text-gray-600 text-sm mb-4">No-code hərəkatı bizneslər üçün səmərəliliyi necə artırır.</p>
+                        <a href="#" class="text-indigo-600 hover:underline font-medium flex items-center">
+                            Daha çox oxu <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Bloq Yazısı 2 -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/400x250/d1d5db/4b5563?text=MƏHSULDARLIQ" alt="Məhsuldarlıq Tövsiyələri" class="w-full h-auto object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Kiçik bizneslər üçün 5 məhsuldarlıq tövsiyəsi</h3>
+                        <p class="text-gray-600 text-sm mb-4">Vaxtınızı idarə etmək və iş axınlarınızı optimallaşdırmaq üçün praktiki addımlar.</p>
+                        <a href="#" class="text-indigo-600 hover:underline font-medium flex items-center">
+                            Daha çox oxu <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Bloq Yazısı 3 -->
+                <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/400x250/d1d5db/4b5563?text=YENİLİKLƏR" alt="SmartBizPanel Yenilikləri" class="w-full h-auto object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">SmartBizPanel-dən son yeniliklər: Nə gəlir?</h3>
+                        <p class="text-gray-600 text-sm mb-4">Yeni funksiyalar, təkmilləşdirmələr və gələcək planlarımız haqqında məlumat.</p>
+                        <a href="#" class="text-indigo-600 hover:underline font-medium flex items-center">
+                            Daha çox oxu <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Rəylər və Sosial Sübut Bölməsi -->
+        <section id="testimonials" class="py-16 md:py-24 px-6 bg-white rounded-lg shadow-lg my-12 mx-auto max-w-7xl">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Rəylər və Uğur Hekayələri</h2>
+                <p class="text-xl text-gray-600">Müştərilərimizin SmartBizPanel ilə əldə etdiyi real nəticələr.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Rəy 1 -->
+                <div class="bg-indigo-50 rounded-xl p-8 shadow-md border border-indigo-200 flex flex-col items-center text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/80x80/6366f1/ffffff?text=M1" alt="Müştəri 1 Avatarları" class="w-20 h-20 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                    <p class="text-gray-700 italic mb-4">
+                        "SmartBizPanel kiçik biznesimdə xaosu tamamilə aradan qaldırdı. Artıq müştərilərimi, layihələrimi və maliyyəmi asanlıqla idarə edirəm. Həqiqətən də vaxtıma qənaət edir!"
+                    </p>
+                    <p class="font-semibold text-indigo-700">- Aysel Əhmədova, "Kreativ Dizayn"ın rəhbəri</p>
+                </div>
+
+                <!-- Rəy 2 -->
+                <div class="bg-indigo-50 rounded-xl p-8 shadow-md border border-indigo-200 flex flex-col items-center text-center transform hover:scale-105 transition duration-300 hover:shadow-xl">
+                    <img src="https://placehold.co/80x80/6366f1/ffffff?text=M2" alt="Müştəri 2 Avatarları" class="w-20 h-20 rounded-full mb-4 border-4 border-indigo-300 shadow-md">
+                    <p class="text-gray-700 italic mb-4">
+                        "Freelancer kimi işləyirəm və SmartBizPanel sayəsində müştəri bazam hər zaman nizamlıdır. Tapşırıq izləmə xüsusiyyəti məhsuldarlığımı xeyli artırdı. Təşəkkürlər!"
+                    </p>
+                    <p class="font-semibold text-indigo-700">- Elvin Mirzəyev, SMM Mütəxəssisi</p>
+                </div>
+            </div>
+
+            <!-- Opsiyonel: Tərəfdaşlar üçün Loqo Slayderi -->
+            <div class="mt-20 text-center">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-8">Tərəfdaşlarımız</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 opacity-75">
+                    <img src="https://placehold.co/120x60/e0e7ff/6366f1?text=PARTNER1" alt="Tərəfdaş Loqosu 1" class="h-14 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                    <img src="https://placehold.co/120x60/e0e7ff/6366f1?text=PARTNER2" alt="Tərəfdaş Loqosu 2" class="h-14 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                    <img src="https://placehold.co/120x60/e0e7ff/6366f1?text=PARTNER3" alt="Tərəfdaş Loqosu 3" class="h-14 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                    <img src="https://placehold.co/120x60/e0e7ff/6366f1?text=PARTNER4" alt="Tərəfdaş Loqosu 4" class="h-14 opacity-80 hover:opacity-100 transition-opacity duration-300">
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Giriş / İdarə Panelinə Keçid Bölməsi -->
+        <section id="login-access" class="py-16 md:py-24 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg shadow-lg my-12 mx-auto max-w-7xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">İndi İşini Sistemləşdir!</h2>
+            <p class="text-xl md:text-2xl mb-10 opacity-90">SmartBizPanel ilə məhsuldarlığınızı artırın.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#" class="bg-white text-purple-700 hover:bg-gray-100 font-semibold py-3 px-10 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Panelə Daxil Ol
+                </a>
+                <a href="#contact" class="bg-purple-700 text-white hover:bg-purple-800 font-semibold py-3 px-10 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 flex items-center justify-center border border-purple-700">
+                    <i class="fas fa-question-circle mr-2"></i> Demo Tələb Et
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Səhifənin Yuxarısına Qayıt Düyməsi -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300 hidden" aria-label="Səhifənin yuxarısına qayıt">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Footer Bölməsi -->
+    <footer class="bg-gray-800 text-gray-300 py-10 px-6 rounded-t-lg">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Footer Sütun 1: Haqqımızda -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">SmartBizPanel</h4>
+                <p class="text-gray-400 leading-relaxed">
+                    Biznesinizi asanlıqla idarə etmək üçün no-code əsaslı daxili idarəetmə həlləri təklif edirik.
+                </p>
+            </div>
+
+            <!-- Footer Sütun 2: Sürətli Keçidlər -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">Keçidlər</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Əsas Səhifə</a></li>
+                    <li><a href="#features" class="text-gray-400 hover:text-white transition duration-300">Funksiyalar</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-white transition duration-300">Qiymət Planları</a></li>
+                    <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">Haqqımızda</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Əlaqə</a></li>
+                    <li><a href="#faq" class="text-gray-400 hover:text-white transition duration-300">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Footer Sütun 3: Əlaqə Məlumatı -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">Əlaqə</h4>
+                <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i> info@smartbizpanel.az</p>
+                <p class="text-gray-400 mb-2"><i class="fas fa-phone mr-2"></i> +994 50 123 45 67</p>
+                <p class="text-gray-400 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Bakı, Azərbaycan</p>
+                <div class="flex space-x-4 mt-4">
+                    <a href="https://linkedin.com/company/smartbizpanel" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://facebook.com/smartbizpanel" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300" aria-label="Facebook"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://instagram.com/smartbizpanel" target="_blank" class="text-gray-400 hover:text-white text-2xl transition duration-300" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-700 mt-10 pt-8 text-center text-gray-500 text-sm">
+            &copy; 2025 SmartBizPanel. Bütün hüquqlar qorunur.
+        </div>
+    </footer>
+
+    <!-- JavaScript Mobil Menyu, FAQ Akordeon, Form Mesajı və Yuxarıya Qayıt Düyməsi üçün -->
+    <script>
+        // Mobil Menyu Açılıb/Bağlanması
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ Akordeon Açılıb/Bağlanması
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            content.classList.toggle('hidden');
+            if (content.classList.contains('hidden')) {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Mobil menyudan linkə kliklənəndə menyunu bağlamaq
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Mesaj qutusunu göstərən funksiya (Alert əvəzinə)
+        function showMessageBox(message, type = 'success') {
+            const body = document.body;
+
+            // Arxa fon (backdrop) yaratmaq
+            const backdrop = document.createElement('div');
+            backdrop.classList.add('message-box-backdrop');
+            body.appendChild(backdrop);
+
+            // Mesaj qutusunu yaratmaq
+            const messageBox = document.createElement('div');
+            messageBox.classList.add('message-box');
+
+            let iconHtml = '';
+            let textColor = 'text-green-600';
+            if (type === 'success') {
+                iconHtml = '<i class="fas fa-check-circle text-5xl mb-4 text-green-500"></i>';
+                textColor = 'text-green-600';
+            } else if (type === 'error') {
+                iconHtml = '<i class="fas fa-times-circle text-5xl mb-4 text-red-500"></i>';
+                textColor = 'text-red-600';
+            } else { // info or default
+                iconHtml = '<i class="fas fa-info-circle text-5xl mb-4 text-blue-500"></i>';
+                textColor = 'text-blue-600';
+            }
+
+            messageBox.innerHTML = `
+                ${iconHtml}
+                <p class="text-xl font-semibold ${textColor} mb-6">${message}</p>
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300" onclick="closeMessageBox()">Tamam</button>
+            `;
+            body.appendChild(messageBox);
+        }
+
+        // Mesaj qutusunu bağlayan funksiya
+        function closeMessageBox() {
+            const messageBox = document.querySelector('.message-box');
+            const backdrop = document.querySelector('.message-box-backdrop');
+            if (messageBox) messageBox.remove();
+            if (backdrop) backdrop.remove();
+        }
+
+        // Əlaqə Formunun Göndərilməsi
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Səhifənin yenilənməsinin qarşısını alır
+
+            // Form məlumatlarını toplamaq (yalnız demo məqsədlidir)
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            console.log('Form Göndərildi:');
+            console.log('Ad:', name);
+            console.log('E-poçt:', email);
+            console.log('Mesaj:', message);
+
+            // İstifadəçiyə uğur mesajı göstərmək
+            showMessageBox('Mesajınız uğurla göndərildi! Tezliklə sizinlə əlaqə saxlayacağıq.', 'success');
+
+            // Formu sıfırlamaq
+            this.reset();
+        });
+
+        // Səhifənin Yuxarısına Qayıt Düyməsi Funksionallığı
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // 300px aşağı sürüşdürüldükdə göstər
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Səlis sürüşmə effekti
+            });
+        });
+
+        // Dil Seçimi Funksionallığı
+        document.querySelectorAll('#lang-button + div a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Linkin standart hərəkətini dayandır
+                const selectedLang = this.dataset.lang; // data-lang atributunu götür
+                const langButton = document.getElementById('lang-button');
+                
+                // Məqsəd: Dil seçimi düyməsinin mətnini və bayrağını dəyişmək
+                if (selectedLang === 'az') {
+                    langButton.innerHTML = '?🇿 AZ <i class="fas fa-chevron-down text-xs ml-1"></i>';
+                    document.documentElement.lang = 'az'; // HTML dilini dəyiş
+                    // Burada səhifənin bütün mətnini Azərbaycanca etmək üçün daha mürəkkəb bir "lokallaşdırma" funksiyası lazım olacaq.
+                    // Hazırkı halda yalnız düyməni dəyişirik.
+                    showMessageBox('Dil Azərbaycan dilinə dəyişdirildi.', 'info');
+                } else if (selectedLang === 'en') {
+                    langButton.innerHTML = '🇬🇧 EN <i class="fas fa-chevron-down text-xs ml-1"></i>';
+                    document.documentElement.lang = 'en'; // HTML dilini dəyiş
+                    showMessageBox('Language changed to English.', 'info');
+                }
+                
+                // Dropdown-u bağlamaq
+                langButton.parentElement.classList.remove('group-hover:opacity-100', 'group-hover:visible');
+                langButton.parentElement.classList.add('opacity-0', 'invisible');
+            });
+        });
+
+
+        // Gemini API İnteqrasiyaları
+
+        // SOP Generator Funksiyası
+        document.getElementById('generate-sop-btn').addEventListener('click', async () => {
+            const sopInput = document.getElementById('sop-input');
+            const sopOutput = document.getElementById('sop-output');
+            const sopLoader = document.getElementById('sop-loader');
+            const generateBtn = document.getElementById('generate-sop-btn');
+
+            const promptText = sopInput.value.trim();
+            if (!promptText) {
+                showMessageBox('Zəhmət olmasa, SOP üçün təsvir daxil edin.', 'error');
+                return;
+            }
+
+            sopLoader.classList.remove('hidden');
+            generateBtn.disabled = true; // Düyməni deaktiv et
+            sopOutput.value = ''; // Köhnə nəticəni təmizlə
+
+            try {
+                // Gemini API çağırışı üçün prompt hazırlamaq
+                const prompt = `Aşağıdakı iş axını üçün addım-addım standart əməliyyat proseduru (SOP) layihəsi yarat: "${promptText}". Nəticəni aydın və ardıcıl bəndlər şəklində təqdim et.`;
+                
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // API açarı Canvas tərəfindən təmin ediləcək
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    sopOutput.value = result.candidates[0].content.parts[0].text;
+                } else {
+                    sopOutput.value = 'Xəta baş verdi: SOP yaradıla bilmədi. Zəhmət olmasa, yenidən cəhd edin.';
+                    console.error('Gemini API cavabının strukturu gözlənilməzdir:', result);
+                    showMessageBox('SOP yaradılarkən xəta baş verdi.', 'error');
+                }
+            } catch (error) {
+                sopOutput.value = 'Şəbəkə xətası və ya API çağırışında problem baş verdi.';
+                console.error('API çağırışı zamanı xəta:', error);
+                showMessageBox('SOP yaradılarkən şəbəkə xətası baş verdi.', 'error');
+            } finally {
+                sopLoader.classList.add('hidden');
+                generateBtn.disabled = false; // Düyməni yenidən aktiv et
+            }
+        });
+
+        // Marketinq Sloqan Generatoru Funksiyası
+        document.getElementById('generate-slogan-btn').addEventListener('click', async () => {
+            const sloganInput = document.getElementById('slogan-input');
+            const sloganOutput = document.getElementById('slogan-output');
+            const sloganLoader = document.getElementById('slogan-loader');
+            const generateBtn = document.getElementById('generate-slogan-btn');
+
+            const promptText = sloganInput.value.trim();
+            if (!promptText) {
+                showMessageBox('Zəhmət olmasa, məhsul/xidmət təsviri daxil edin.', 'error');
+                return;
+            }
+
+            sloganLoader.classList.remove('hidden');
+            generateBtn.disabled = true; // Düyməni deaktiv et
+            sloganOutput.value = ''; // Köhnə nəticəni təmizlə
+
+            try {
+                // Gemini API çağırışı üçün prompt hazırlamaq
+                const prompt = `Aşağıdakı məhsul/xidmət üçün 5 cəlbedici marketinq sloqanı yarat: "${promptText}". Sloqanları nöqtəli siyahı şəklində təqdim et.`;
+                
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // API açarı Canvas tərəfindən təmin ediləcək
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    sloganOutput.value = result.candidates[0].content.parts[0].text;
+                } else {
+                    sloganOutput.value = 'Xəta baş verdi: Sloqanlar yaradıla bilmədi. Zəhmət olmasa, yenidən cəhd edin.';
+                    console.error('Gemini API cavabının strukturu gözlənilməzdir:', result);
+                    showMessageBox('Sloqanlar yaradılarkən xəta baş verdi.', 'error');
+                }
+            } catch (error) {
+                sloganOutput.value = 'Şəbəkə xətası və ya API çağırışında problem baş verdi.';
+                console.error('API çağırışı zamanı xəta:', error);
+                showMessageBox('Sloqanlar yaradılarkən şəbəkə xətası baş verdi.', 'error');
+            } finally {
+                sloganLoader.classList.add('hidden');
+                generateBtn.disabled = false; // Düyməni yenidən aktiv et
+            }
+        });
+    </script>
+</body>
+</html>
+?
